@@ -1,0 +1,44 @@
+h1 {
+                color: rgb(0, 4, 255);
+                border-width: 2px;
+                border-style: solid;
+                border-color: currentColor;
+            }
+            body {
+                background-color: #d39090;
+            }
+
+            .link {
+                text-decoration: none;
+                font-weight: bold;
+                margin-right: 15px;
+            }
+
+            .link:hover {
+                color: rgb(255, 0, 0);
+                outline: 5px solid rgb(255, 0, 0); /*outline no ocupa espacio*/
+            }
+
+            .link:active {
+                outline: 5px solid rgb(22, 25, 223); /*outline no ocupa espacio*/
+            }
+
+            input:focus {
+                border: 5px solid rgb(22, 22, 155);
+            }
+
+            #show {
+                background-color: rgb(69, 16, 214);
+                color: white;
+                border-radius: 8px;
+                padding: 8px 12px;
+                border: none;
+                cursor: pointer;
+            }
+
+            li:first-child{
+                color: red;
+            }
+            li:last-child{
+                color: blueviolet;
+            }
