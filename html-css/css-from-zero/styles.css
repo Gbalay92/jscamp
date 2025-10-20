@@ -86,8 +86,10 @@ li:last-child{
     gap: 16px;
     flex-direction: row;
     direction: rtl;
-    justify-content: center;
-    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .item {
@@ -96,7 +98,6 @@ li:last-child{
     width: 100px;
     height: 100px;
     background: #09f;
-    
 
     /*valores por defecto*/
     flex-grow: 0; /*los items no crecen*/
@@ -105,19 +106,22 @@ li:last-child{
     /* shorthand: flex: 0 1 auto;*/
 }
 
-.item:first-child {
+.item:first-child ,
+.item:nth-child(4) {
     background: rgb(152, 212, 12);
-    flex: 4;
-    order: 3;
+    height: 25px;
+    /*flex: 0.5;*/
+    /*order: 3;*/
 }
 
 .item:nth-child(2) {
-    flex: 2; /*flex-grow: 2;*/
-    order: 1;
+    height: 35px;
+    /*flex: 0.5; flex-grow: 2;*/
+    /*order: 1;*/
 }
 
-.item:last-child {
+.item:nth-child(3),
+.item:nth-child(5) {
     background: rgb(236, 14, 14);
-    flex: 1;
-    order: 2;
+    height: 60px;
 }
