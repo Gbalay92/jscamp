@@ -216,7 +216,7 @@ button {
     outline-offset: 2px;
   }
 
-  &:active { 
+  &:active { /* pseudo-clase que significa que el elemento está siendo presionado */
     transform: scale(0.90)
   }
 
@@ -231,6 +231,10 @@ main > section:nth-child(2) {
   padding-inline: 1rem;
   background-color: var(--background);
   padding-top: 2rem;
+  text-align: center;
+  h1 {
+    flex-direction: column;
+  }
 
   & > header {
     gap: 2px;
@@ -321,5 +325,35 @@ article {
 
   h3 {
     font-weight: 500;
+  }
+
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+
+  a {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover, &:focus {
+      background-color: var(--primary);
+      color: white;
+      outline: none;
+    }
+
+    &:active {
+        transform: scale(0.95);
+        background-color: var(--primary-light); 
+        pointer-events: none;
+    }
   }
 }
