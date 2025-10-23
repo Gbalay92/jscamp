@@ -16,7 +16,7 @@ applyButtons.forEach(applyButton => {
 
 const jobListings = document.querySelector('.listing-jobs');
 
-jobListings.addEventListener('click', (event) => {
+jobListings?.addEventListener('click', (event) => {
     event.target.classList.contains('apply-button-job') && (() => {
         alert('¡Gracias por tu interés! Serás redirigido a la página de aplicación.');
         event.target.textContent = 'Aplicando...';
