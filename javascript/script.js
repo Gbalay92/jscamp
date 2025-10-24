@@ -24,3 +24,29 @@ jobListings?.addEventListener('click', (event) => {
         event.target.classList.add('is-applied');
     })();
 });
+
+const filterTechnology = document.getElementById('filter-technology');
+const filterLocation = document.getElementById('filter-location');
+const filterExperience = document.getElementById('filter-experience');
+const msg = document.querySelector('#filter-message');
+
+filterTechnology?.addEventListener('change',() => {
+    msg.textContent = `Filtrando por tecnología: ${filterTechnology.value}`;
+});
+
+filterLocation?.addEventListener('change',() => {
+    msg.textContent += `Filtrando por ubicación: ${filterLocation.value}`;
+});
+
+filterExperience?.addEventListener('change',() => {
+    msg.textContent += `<br>Filtrando por experiencia: ${filterExperience.value}`;
+});
+
+const searchInput = document.getElementById('search-input');
+searchInput?.addEventListener('input', () => {
+    console.log(`Buscando empleos que coincidan con: "${searchInput.value}"`);
+});
+
+searchInput?.addEventListener('blur', () => {
+    console.log(`Se dispara cuando el campo pierde el foco`);
+});
