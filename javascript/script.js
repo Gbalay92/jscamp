@@ -39,7 +39,7 @@ filterLocation?.addEventListener('change',() => {
 });
 
 filterExperience?.addEventListener('change',() => {
-    msg.textContent += `<br>Filtrando por experiencia: ${filterExperience.value}`;
+    msg.textContent += `Filtrando por experiencia: ${filterExperience.value}`;
 });
 
 const searchInput = document.getElementById('search-input');
