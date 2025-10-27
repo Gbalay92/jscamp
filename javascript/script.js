@@ -79,6 +79,7 @@ jobListings?.addEventListener('click', (event) => {
 
 const filterLocation = document.getElementById('filter-location');
 const msg = document.querySelector('#filter-message');
+const jobs = document.querySelectorAll('.job');
 
 filterLocation?.addEventListener('change',() => {
     const selectedLocation = filterLocation.value;
@@ -87,4 +88,16 @@ filterLocation?.addEventListener('change',() => {
     } else {
         msg.textContent = '';
     }
+
+    
+    jobs.forEach(job => {
+        //const modalidad = job.getAttribute('data-modalidad');
+        console.log(job.dataset.modalidad);
+        if (selectedLocation === '' || job.dataset.modalidad === selectedLocation) {
+            job.style.display = 'block';
+        } else {
+            job.style.display = 'none'; //oculta el empleo si no coincide con el filtro
+        }
+    });
+
 });
