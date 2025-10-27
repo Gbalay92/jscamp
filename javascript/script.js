@@ -91,13 +91,16 @@ filterLocation?.addEventListener('change',() => {
 
     
     jobs.forEach(job => {
-        //const modalidad = job.getAttribute('data-modalidad');
-        console.log(job.dataset.modalidad);
+        /*console.log(job.dataset.modalidad);
         if (selectedLocation === '' || job.dataset.modalidad === selectedLocation) {
             job.style.display = 'block';
         } else {
             job.style.display = 'none'; //oculta el empleo si no coincide con el filtro
-        }
+        }*/
+        const modalidad = job.getAttribute('data-modalidad');
+        const isShown = selectedLocation === '' || modalidad === selectedLocation;
+        job.classList.toggle('is-hidden', !isShown); //aplica o quita la clase is-hidden
+        
     });
 
 });
