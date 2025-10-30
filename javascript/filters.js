@@ -23,3 +23,15 @@ filterLocation?.addEventListener('change',() => {
 
 });
 
+const filterInput = document.getElementById('search-input');
+
+filterInput?.addEventListener('input', () => {
+    const searchTerm = filterInput.value.toLowerCase();
+    console.log(searchTerm);
+    const jobs = document.querySelectorAll('.job');
+    jobs.forEach(job => {
+        const jobTitle = job.dataset.title.toLowerCase();
+        const isShown = jobTitle.includes(searchTerm);
+        job.classList.toggle('is-hidden', isShown === false);
+    });
+});
