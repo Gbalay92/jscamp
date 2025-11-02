@@ -21,12 +21,51 @@
                 return <h1 style={{ color: '#09f' }}>Hola {nombre}</h1>;
             }
 
+            function JobCard({data, title, company, location, description}) {
+                return (
+                    <article data-modalidad={data?.modalidad}
+                        className="job">
+                        <div>
+                            <h3>{title}</h3>
+                            <h4>{company} | {location}</h4>
+                        </div>
+                        <p>{description}</p>
+                        <button className=".apply-button-job">Aplicar</button>
+                    </article>
+                );
+            }
+
             function App() {
                 return (
                     <div>
                         <Saludo nombre="React.js!"/>
-                        <Saludo nombre="Gonzalo!"/>
-                        <Saludo nombre="Developer!"/>
+                        <div className="listing-jobs">
+                    
+                        <JobCard 
+                            title="Desarrollador Frontend React" 
+                            company="Tech Solutions" 
+                            location="Remoto" 
+                            description="Buscamos un desarrollador frontend con experiencia en React para unirse a nuestro equipo." 
+                            modalidad="Remoto"
+                            data={{modalidad: 'Remoto'}}
+                        />
+                        <JobCard 
+                            title="Ingeniero de Software Full Stack" 
+                            company="Innovatech" 
+                            location="Madrid, España" 
+                            description="Se necesita ingeniero de software con conocimientos en React y Node.js para proyectos innovadores." 
+                            modalidad="Presencial"
+                            data={{modalidad: 'Presencial'}}
+                        />
+                        <JobCard 
+                            title="Desarrollador Web Junior" 
+                            company="WebStart" 
+                            location="Barcelona, España" 
+                            description="Oportunidad para desarrolladores web junior con ganas de aprender React y crecer profesionalmente." 
+                            modalidad="Híbrido"
+                            data={{modalidad: 'Híbrido'}}
+                        />
+                        </div>
                     </div>
                 );
             }
@@ -52,7 +91,7 @@
         </header>
         <main>
             <section>
-                <h1>React.js first steps</h1>
+                <h2>Empleos Disponibles</h2>
                 <div id="root"></div>
             </section>
         </main>
