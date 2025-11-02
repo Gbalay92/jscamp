@@ -17,10 +17,21 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel">
 
-            const titulo = <h1 style={{ color: '#09f' }}>Hola React.js!</h1>;
+            function Saludo({nombre}) {
+                return <h1 style={{ color: '#09f' }}>Hola {nombre}</h1>;
+            }
 
+            function App() {
+                return (
+                    <div>
+                        <Saludo nombre="React.js!"/>
+                        <Saludo nombre="Gonzalo!"/>
+                        <Saludo nombre="Developer!"/>
+                    </div>
+                );
+            }
             const rootElement = document.getElementById('root');
-            ReactDOM.createRoot(rootElement).render(titulo);
+            ReactDOM.createRoot(rootElement).render(<App />);
         </script>
     </head>
     <body>
