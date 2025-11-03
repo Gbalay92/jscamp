@@ -22,6 +22,9 @@
             }
 
             function JobCard({data, title, company, location, description}) {
+                function handleClick() {
+                    alert(`Has aplicado para el trabajo en modalidad: ${jobData.modalidad}`);
+                }
                 return (
                     <article data-modalidad={data?.modalidad}
                         className="job">
@@ -30,7 +33,8 @@
                             <h4>{company} | {location}</h4>
                         </div>
                         <p>{description}</p>
-                        <button className=".apply-button-job">Aplicar</button>
+                        <button className=".apply-button-job"
+                        onClick={handleClick}>Aplicar</button>
                     </article>
                 );
             }
