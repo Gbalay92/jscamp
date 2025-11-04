@@ -22,8 +22,12 @@
             }
 
             function JobCard({data, title, company, location, description}) {
+                const [isApplied, setIsApplied] = React.useState(false);
+
+                const text = isApplied ? 'Aplicado' : 'Aplicar';
+
                 function handleClick() {
-                    alert(`Has aplicado para el trabajo en modalidad: ${jobData.modalidad}`);
+                    setIsApplied(!isApplied);
                 }
                 return (
                     <article data-modalidad={data?.modalidad}
@@ -33,8 +37,10 @@
                             <h4>{company} | {location}</h4>
                         </div>
                         <p>{description}</p>
-                        <button className=".apply-button-job"
-                        onClick={handleClick}>Aplicar</button>
+                        <button 
+                        disabled={isApplied === true}
+                        className={`apply-button-job ${isApplied ? 'is-applied' : ''}`}
+                        onClick={handleClick}>{text}</button>
                     </article>
                 );
             }

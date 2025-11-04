@@ -389,7 +389,6 @@ article {
 
 .apply-button-job {
 &.is-applied { 
-    pointer-events: none;
     background-color: #13b858;
 }
 }
