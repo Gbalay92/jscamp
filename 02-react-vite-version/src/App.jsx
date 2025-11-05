@@ -1,5 +1,6 @@
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
+import { Pagination } from './components/Pagination.jsx'
 
 function App() {
   return (
@@ -57,15 +58,7 @@ function App() {
                       
               </div>
           </section>
-          <nav className="pagination" aria-label="pagination">
-              <a href="#">&lt;</a>
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">&gt;</a>
-          </nav>
+          <Pagination currentPage={1} totalPages={5} onPageChange={(page) => console.log(page)} />
       </main>
       <Footer />
     </>
