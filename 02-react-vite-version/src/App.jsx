@@ -1,22 +1,10 @@
-import { useState } from 'react'
+import { Header } from './components/Header.jsx'
+import { Footer } from './components/Footer.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <header>
-          <h1>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>DevJobs</h1>
-          <nav aria-label="nav bar">
-              <a href="./index.html">Inicio</a>
-              <a href="./empleos.html">Empleos</a>
-              <a href="./contacto.html">Contacto</a>
-          </nav>
-      </header>
+      <Header />
       <main>
           <section>
               <img src="./background.webp" alt="background"></img>
@@ -79,9 +67,7 @@ function App() {
               <a href="#">&gt;</a>
           </nav>
       </main>
-      <footer>
-          <small>&copy; 2025 DevJobs. Todos los derechos reservados.</small>
-      </footer>
+      <Footer />
     </>
   )
 }
