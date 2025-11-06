@@ -1,6 +1,7 @@
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Pagination } from './components/Pagination.jsx'
+import { JobList } from './components/JobList.jsx'
 
 function SearchFromSection() {
   return (
@@ -57,11 +58,7 @@ function App() {
       <main>
           <SearchFromSection />
           <section>
-              <h1>Ofertas de empleo para desarrolladores</h1>
-              <p>Explora las últimas oportunidades laborales en el mundo del desarrollo web y móvil.</p>
-              <div className="listing-jobs">
-                      
-              </div>
+            <JobList />
           </section>
           <Pagination currentPage={1} totalPages={5} onPageChange={(page) => console.log(page)} />
       </main>
