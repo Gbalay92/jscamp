@@ -2,12 +2,9 @@ import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Pagination } from './components/Pagination.jsx'
 
-function App() {
+function SearchFromSection() {
   return (
-    <>
-      <Header />
-      <main>
-          <section>
+        <section>
               <img src="./background.webp" alt="background"></img>
           <h1>Encuentra el trabajo de tus sueños</h1>
           <p>Únete a la comunidad más grande de desarrolladores y encuentra tu próxima oportunidad.</p>
@@ -50,7 +47,15 @@ function App() {
                   <span id="filter-message"></span>      
               </div>
           </form>
-          </section>
+        </section>
+      )}
+
+function App() {
+  return (
+    <>
+      <Header />
+      <main>
+          <SearchFromSection />
           <section>
               <h1>Ofertas de empleo para desarrolladores</h1>
               <p>Explora las últimas oportunidades laborales en el mundo del desarrollo web y móvil.</p>
