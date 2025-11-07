@@ -1,20 +1,16 @@
 import { useState } from "react"
+import jobsData from '../data.json'
+import { JobCard } from "./JobCard.jsx"
 
-export function JobList({ job }) {
-  const [isApplied, setIsApplied] = useState(false)
-
-  const handleApplyClick = () => {
-    setIsApplied(true)
-  }
-
-  const buttonClasses = isApplied ? 'button-apply-job is-applied' : 'button-apply-job'
-  const buttonText = isApplied ? 'Aplicado' : 'Aplicar'
+export function JobList() {
 
   return (
     <>
       <h2>Resultados de búsqueda</h2>
       <div className="listing-jobs">
-        
+        {jobsData.map(job => (
+          <JobCard key={job.id} job={job} />
+        ))}
       </div>
     </>
   )
