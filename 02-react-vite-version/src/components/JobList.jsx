@@ -1,4 +1,3 @@
-import { useState } from "react"
 import jobsData from '../data.json'
 import { JobCard } from "./JobCard.jsx"
 
