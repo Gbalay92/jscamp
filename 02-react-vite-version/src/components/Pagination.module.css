@@ -20,10 +20,12 @@
       outline: none;
     }
 
-    &:active {
-        transform: scale(0.95);
-        background-color: var(--primary-light); 
-        pointer-events: none;
-    }
+    
   }
+}
+
+.isActive {
+    transform: scale(0.95);
+    background-color: var(--primary-light); 
+    pointer-events: none;
 }
