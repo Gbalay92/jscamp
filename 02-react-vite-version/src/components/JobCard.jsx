@@ -21,7 +21,7 @@ export function JobCard({ job }) {
             <p>{job.description}</p>
             <button 
             disabled={isApplied === true}
-            className={`apply-button-job ${isApplied ? 'is-applied' : ''}`}
+            className={buttonClasses}
             onClick={handleApplyClick}>{buttonText}</button>
         </article>
     )
