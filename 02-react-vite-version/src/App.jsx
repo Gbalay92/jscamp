@@ -25,7 +25,7 @@ function App() {
   const jobsAfterFilter = filteredJobs.filter((job) => {
     const matchesTechnology = filters.technology ? job.data.technology.toLowerCase() === filters.technology.toLowerCase() : true
     const matchesLocation = filters.location ? job.location.toLowerCase() === filters.location.toLowerCase() : true
-    const matchesExperience = filters.experience ? job.experience.toLowerCase() === filters.experience.toLowerCase() : true
+    const matchesExperience = filters.experience ? job.data.nivel.toLowerCase() === filters.experience.toLowerCase() : true
 
     return matchesTechnology && matchesLocation && matchesExperience
   })
@@ -42,7 +42,10 @@ function App() {
   }
 
   const handleSearch = (searchParams) => {
-    setFilters(searchParams)
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      ...searchParams
+    }))
     setCurrentPage(1) // Reiniciar a la primera página al cambiar los filtros de búsqueda
   }
 

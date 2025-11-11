@@ -18,6 +18,15 @@ export function SearchFormSection({onSearch, onTextFilter}) {
         onSearch(filters)
     }
 
+    const handleSearchFilter = (event) => {
+        event.preventDefault()
+        const {name, value} = event.target
+        const filters = {
+            [name]: value,
+        }
+        onSearch(filters)
+    }
+
     const handleTextChange = (event) => {
         const inputValue = event.target.value
         onTextFilter(inputValue)
@@ -46,21 +55,21 @@ export function SearchFormSection({onSearch, onTextFilter}) {
           
           
               <div className="search-filters">
-                  <select name={searchInputTecnology} id="filter-technology">
+                  <select onChange={handleSearchFilter} name="technology" id={searchInputTecnology}>
                       <option value="">Tecnología</option>
                       <option value="javascript">JavaScript</option>
                       <option value="python">Python</option>
                       <option value="java">Java</option>
                       <option value="ruby">Ruby</option>
                   </select>
-                  <select name={searchInputLocation} id="filter-location">
+                  <select onChange={handleSearchFilter} name="location" id={searchInputLocation}>
                       <option value="">Ubicación</option>
                       <option value="remoto">Remoto</option>
                       <option value="madrid">Madrid, España</option>
                       <option value="barcelona">Barcelona, España</option>
                       <option value="valencia">Valencia, España</option>
                   </select>
-                  <select name={searchInputExperience} id="filter-experience">
+                  <select onChange={handleSearchFilter} name="experience" id={searchInputExperience}>
                       <option value="">Nivel de experiencia</option>
                       <option value="junior">Junior</option>
                       <option value="mid">Mid</option>
