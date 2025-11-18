@@ -8,9 +8,9 @@ export function Header() {
                         <polyline points="8 6 2 12 8 18"></polyline>
                     </svg>DevJobs</h1>
                 <nav aria-label="nav bar">
-                    <a href="./index.html">Inicio</a>
-                    <a href="./empleos.html">Empleos</a>
-                    <a href="./contacto.html">Contacto</a>
+                    <a href="./">Inicio</a>
+                    <a href="./search">Empleos</a>
+                    <a href="./">Contacto</a>
                 </nav>
             </header>
             
