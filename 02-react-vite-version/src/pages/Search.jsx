@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Pagination } from '../components/Pagination.jsx'
 import { JobList } from '../components/JobList.jsx'
 import { SearchFormSection } from '../components/SearchFormSection.jsx'
@@ -51,6 +51,11 @@ export function SearchPage() {
     setTextFilter(newTextToFilter)
     setCurrentPage(1) // Reiniciar a la primera página al cambiar el filtro de texto
   }
+
+  useEffect(() => {
+    console.log('effect...') 
+    document.title = `DevJobs | Página ${currentPage}`
+  }, [currentPage])
 
   return (
       <main>
