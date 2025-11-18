@@ -1,3 +1,5 @@
+import { Link } from "./Link";
+
 export function Header() {
     return (
         <>
@@ -8,9 +10,9 @@ export function Header() {
                         <polyline points="8 6 2 12 8 18"></polyline>
                     </svg>DevJobs</h1>
                 <nav aria-label="nav bar">
-                    <a href="./">Inicio</a>
-                    <a href="./search">Empleos</a>
-                    <a href="./">Contacto</a>
+                    <Link href="./">Inicio</Link>
+                    <Link href="./search">Empleos</Link>
+                    <Link href="./">Contacto</Link>
                 </nav>
             </header>
             

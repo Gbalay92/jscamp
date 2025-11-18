@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
-import jobsData from './data.json'
 import { HomePage } from './pages/Home.jsx'
 import { SearchPage } from './pages/Search.jsx'
 import { NotFoundPage } from './pages/404.jsx'
@@ -9,7 +8,10 @@ import { NotFoundPage } from './pages/404.jsx'
 const RESULTS_PER_PAGE = 5
 
 function App() {
-  const currentPath = window.location.pathname
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
+
+
   let page = null
   if (currentPath === '/') {
     page = <HomePage />
@@ -18,6 +20,16 @@ function App() {
   } else {
     page = <NotFoundPage />
   }
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname)
+    }
+    window.addEventListener('popstate', handleLocationChange)
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange)
+    }
+  }, [])
 
   return (
     <>
