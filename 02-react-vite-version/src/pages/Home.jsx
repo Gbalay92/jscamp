@@ -1,11 +1,26 @@
 export function HomePage() {
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const { navigateTo } = useRouter()
+        const formData = new FormData(event.target)
+        const searchTerm = formData.get('search')
+
+
+        const url = searchTerm !== ''
+            ? '/search?text=' + encodeURIComponent(searchTerm)
+            : '/search'
+        
+        navigateTo(url)
+    }
+    
     return (
         <main>
             <section>
                 <img src="./background.webp" />
             <h1>Encuentra el trabajo de tus sueños</h1>
             <p>Únete a la comunidad más grande de desarrolladores y encuentra tu próxima oportunidad.</p>
-            <form role="search">
+            <form onSubmit={handleSubmit} role="search">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" 
                     width="24" height="24" viewBox="0 0 24 24" 
@@ -15,7 +30,7 @@ export function HomePage() {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                     <path d="M21 21l-6 -6" /></svg>
-                    <input type="text" placeholder="Buscar empleos por título, habilidad o empresa" aria-label="Buscar empleos" />
+                    <input name="search" type="text" placeholder="Buscar empleos por título, habilidad o empresa" aria-label="Buscar empleos" />
                     <button type="submit">Buscar</button>
                 </div>
             </form>
