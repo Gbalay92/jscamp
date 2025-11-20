@@ -12,7 +12,7 @@ export function Header() {
                 <nav aria-label="nav bar">
                     <Link href="./">Inicio</Link>
                     <Link href="./search">Empleos</Link>
-                    <Link href="./">Contacto</Link>
+                    <Link href="./contact">Contacto</Link>
                 </nav>
             </header>
             
