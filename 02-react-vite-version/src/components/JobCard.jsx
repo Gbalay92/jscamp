@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export function JobCard({ job }) {
   const [isApplied, setIsApplied] = useState(false)
-
+  console.log('JobCard renderizado para:', job)
   const handleApplyClick = () => {
     setIsApplied(true)
   }
@@ -15,10 +15,10 @@ export function JobCard({ job }) {
             data-modalidad={job.data?.modalidad}
             className="job">
             <div>
-                <h3>{job.title}</h3>
-                <h4>{job.company} | {job.location}</h4>
+                <h3>{job.titulo}</h3>
+                <h4>{job.empresa} | {job.ubicacion}</h4>
             </div>
-            <p>{job.description}</p>
+            <p>{job.descripcion}</p>
             <button 
             disabled={isApplied === true}
             className={buttonClasses}

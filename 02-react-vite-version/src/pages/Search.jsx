@@ -6,10 +6,9 @@ import { useFilters } from '../hooks/useFilters.jsx'
 
 
 export function SearchPage() {
-  const {filters,
-    textFilter,
+  const {
+    jobs,
     currentPage,
-    pagedResults,
     totalPages,
     handlePageChange,
     handleSearch,
@@ -24,7 +23,7 @@ export function SearchPage() {
       <main>
           <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} />
           <section>
-            <JobList jobs={pagedResults} />
+            <JobList jobs={jobs} />
           </section>
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </main>
