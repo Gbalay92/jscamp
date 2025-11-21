@@ -35,7 +35,7 @@ export const useFilters = () => {
   }, [])
 
 const filteredJobs =  textFilter === '' ? jobs : jobs.filter((job) => {
-return job.title.toLowerCase().includes(textFilter.toLowerCase())
+return job.titulo.toLowerCase().includes(textFilter.toLowerCase())
 })
 
 
@@ -59,7 +59,7 @@ const pagedResults = jobsAfterFilter.slice(
 currentPage * RESULTS_PER_PAGE //pagina 1: 5, pagina 2: 10
 )
 
-  const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE)
+  const totalPages = Math.ceil(jobsAfterFilter.length / RESULTS_PER_PAGE)
 
 
   function handlePageChange(newPage) {
