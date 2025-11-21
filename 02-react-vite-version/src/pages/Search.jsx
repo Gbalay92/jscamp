@@ -9,6 +9,7 @@ export function SearchPage() {
   const {
     jobs,
     currentPage,
+    loading,
     totalPages,
     handlePageChange,
     handleSearch,
@@ -23,7 +24,9 @@ export function SearchPage() {
       <main>
           <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} />
           <section>
-            <JobList jobs={jobs} />
+            {
+                loading ? <p>Cargando empleos...</p> : <JobList jobs={jobs} />
+            }            
           </section>
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </main>
