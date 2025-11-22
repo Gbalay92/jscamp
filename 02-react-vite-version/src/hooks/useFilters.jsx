@@ -28,6 +28,9 @@ export const useFilters = () => {
             if (filters.location) params.append('type', filters.location)
             if (filters.experience) params.append('level', filters.experience)
 
+            const offset = (currentPage - 1) * RESULTS_PER_PAGE
+            params.append('limit', RESULTS_PER_PAGE)
+            params.append('offset', offset)
             const response = await fetch(`https://jscamp-api.vercel.app/api/jobs?${params.toString()}`)
             const json = await response.json()
             setJobs(json.data)
@@ -39,7 +42,7 @@ export const useFilters = () => {
         }
         }
     fetchJobs()
-  }, [textFilter, filters])
+  }, [textFilter, filters, currentPage])
 
 /*const filteredJobs =  textFilter === '' ? jobs : jobs.filter((job) => {
 return job.titulo.toLowerCase().includes(textFilter.toLowerCase())
@@ -60,13 +63,13 @@ const jobsAfterFilter = filteredJobs.filter((job) => {
 
     return matchesTechnology && matchesLocation && matchesExperience
 })
-*/
+
 const pagedResults = jobs.slice(
 (currentPage - 1) * RESULTS_PER_PAGE, //pagina 1: 0-4, pagina 2: 5-9
 currentPage * RESULTS_PER_PAGE //pagina 1: 5, pagina 2: 10
 )
-
-  const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE)
+*/
+  const totalPages = Math.ceil(total / RESULTS_PER_PAGE)
 
 
   function handlePageChange(newPage) {
@@ -86,7 +89,7 @@ currentPage * RESULTS_PER_PAGE //pagina 1: 5, pagina 2: 10
     setCurrentPage(1) // Reiniciar a la primera página al cambiar el filtro de texto
   }
   return {
-    jobs: pagedResults,
+    jobs,
     total,
     loading,
     currentPage,
