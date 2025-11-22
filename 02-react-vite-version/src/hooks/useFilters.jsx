@@ -12,6 +12,16 @@ export const useFilters = () => {
   const [textFilter, setTextFilter] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
+  const hasActiveFilters = Object.values(filters).some(value => value !== '') || textFilter !== ''
+  const handleClearFilters = () => {
+    setFilters({
+        technology: '',
+        location: '',
+        experience: ''
+    })
+    setTextFilter('')
+    setCurrentPage(1)
+  }
 
   const [jobs, setJobs] = useState([])
   const [total, setTotal] = useState(0)
@@ -96,6 +106,8 @@ currentPage * RESULTS_PER_PAGE //pagina 1: 5, pagina 2: 10
     totalPages,
     handlePageChange,
     handleSearch,
-    handleTextFilter
+    handleTextFilter,
+    hasActiveFilters,
+    handleClearFilters
   }
 }

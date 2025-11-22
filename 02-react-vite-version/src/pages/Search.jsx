@@ -13,7 +13,10 @@ export function SearchPage() {
     totalPages,
     handlePageChange,
     handleSearch,
-    handleTextFilter} = useFilters()
+    handleTextFilter,
+    hasActiveFilters,
+    handleClearFilters
+  } = useFilters()
 
   useEffect(() => {
     document.title = `DevJobs | Página ${currentPage}`
@@ -21,7 +24,7 @@ export function SearchPage() {
 
   return (
       <main>
-          <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} />
+          <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} hasActiveFilters={hasActiveFilters} handleClearFilters={handleClearFilters} />
           <section>
             {
                 loading ? <p>Cargando empleos...</p> : <JobList jobs={jobs} />

@@ -1,6 +1,7 @@
 import { useId } from "react"
+import { useState } from "react"
 
-export function SearchFormSection({onSearch, onTextFilter}) {
+export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, handleClearFilters}) {
     const searchInputText = useId()
     const searchInputTecnology = useId()
     const searchInputLocation = useId()
@@ -32,6 +33,16 @@ export function SearchFormSection({onSearch, onTextFilter}) {
         onTextFilter(inputValue)
     }
 
+    const [experience, setExperience] = useState("");
+    const [technology, setTechnology] = useState("");
+    const [location, setLocation] = useState("");
+    const clearFilers = () => {
+        handleClearFilters()
+        setExperience("");
+        setTechnology("");
+        setLocation("");
+    }
+
   return (
     <>
         <section>
@@ -55,26 +66,30 @@ export function SearchFormSection({onSearch, onTextFilter}) {
           
           
               <div className="search-filters">
-                  <select onChange={handleSearchFilter} name="technology" id={searchInputTecnology}>
+                  <select value={technology} onChange={handleSearchFilter} name="technology" id={searchInputTecnology}>
                       <option value="">Tecnología</option>
                       <option value="javascript">JavaScript</option>
                       <option value="python">Python</option>
                       <option value="java">Java</option>
                       <option value="ruby">Ruby</option>
                   </select>
-                  <select onChange={handleSearchFilter} name="location" id={searchInputLocation}>
+                  <select value={location} onChange={handleSearchFilter} name="location" id={searchInputLocation}>
                       <option value="">Ubicación</option>
                       <option value="remoto">Remoto</option>
                       <option value="madrid">Madrid, España</option>
                       <option value="barcelona">Barcelona, España</option>
                       <option value="valencia">Valencia, España</option>
                   </select>
-                  <select onChange={handleSearchFilter} name="experience" id={searchInputExperience}>
+                  <select value={experience} onChange={handleSearchFilter} name="experience" id={searchInputExperience}>
                       <option value="">Nivel de experiencia</option>
                       <option value="junior">Junior</option>
                       <option value="mid">Mid</option>
                       <option value="senior">Senior</option>
-                  </select><br/>
+                  </select>
+                  {
+                    hasActiveFilters &&
+                    <button type="button" onClick={clearFilers} className="clear-filters-button">Limpiar</button>
+                  }
                   <span id="filter-message"></span>      
               </div>
           </form>

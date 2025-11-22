@@ -223,11 +223,19 @@ button {
     transform: scale(0.90)
   }
 
+
   &:disabled {
     opacity: .5;
     pointer-events: none;
   }
 }
+
+  .clear-filters-button {
+    background-color: var(--primary);
+    margin-left: 10px;
+    margin-right: 0;
+    padding: 0.65rem 1.3rem;
+  }
 
 /* Features Section */
 main > section:nth-child(2) {
