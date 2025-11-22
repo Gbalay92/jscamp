@@ -21,7 +21,14 @@ export const useFilters = () => {
     async function fetchJobs() {
         try {
             setLoading(true)
-            const response = await fetch('https://jscamp-api.vercel.app/api/jobs')
+
+            const params = new URLSearchParams()
+            if (textFilter) params.append('text', filters.textFilter)
+            if (filters.technology) params.append('technology', filters.technology)
+            if (filters.location) params.append('type', filters.location)
+            if (filters.experience) params.append('level', filters.experience)
+
+            const response = await fetch(`https://jscamp-api.vercel.app/api/jobs?${params.toString()}`)
             const json = await response.json()
             setJobs(json.data)
             setTotal(json.total)
@@ -32,9 +39,9 @@ export const useFilters = () => {
         }
         }
     fetchJobs()
-  }, [])
+  }, [textFilter, filters])
 
-const filteredJobs =  textFilter === '' ? jobs : jobs.filter((job) => {
+/*const filteredJobs =  textFilter === '' ? jobs : jobs.filter((job) => {
 return job.titulo.toLowerCase().includes(textFilter.toLowerCase())
 })
 
@@ -53,13 +60,13 @@ const jobsAfterFilter = filteredJobs.filter((job) => {
 
     return matchesTechnology && matchesLocation && matchesExperience
 })
-
-const pagedResults = jobsAfterFilter.slice(
+*/
+const pagedResults = jobs.slice(
 (currentPage - 1) * RESULTS_PER_PAGE, //pagina 1: 0-4, pagina 2: 5-9
 currentPage * RESULTS_PER_PAGE //pagina 1: 5, pagina 2: 10
 )
 
-  const totalPages = Math.ceil(jobsAfterFilter.length / RESULTS_PER_PAGE)
+  const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE)
 
 
   function handlePageChange(newPage) {

@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 export function JobCard({ job }) {
   const [isApplied, setIsApplied] = useState(false)
-  console.log('JobCard renderizado para:', job)
   const handleApplyClick = () => {
     setIsApplied(true)
   }

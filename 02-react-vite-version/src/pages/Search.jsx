@@ -16,7 +16,6 @@ export function SearchPage() {
     handleTextFilter} = useFilters()
 
   useEffect(() => {
-    console.log('effect...') 
     document.title = `DevJobs | Página ${currentPage}`
   }, [currentPage])
 
