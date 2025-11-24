@@ -33,7 +33,7 @@ export const useFilters = () => {
             setLoading(true)
 
             const params = new URLSearchParams()
-            if (textFilter) params.append('text', filters.textFilter)
+            if (textFilter) params.append('text', textFilter)
             if (filters.technology) params.append('technology', filters.technology)
             if (filters.location) params.append('type', filters.location)
             if (filters.experience) params.append('level', filters.experience)

@@ -1,6 +1,9 @@
 import { useId } from "react"
 import { useState } from "react"
 
+
+let timeoutRef = null 
+
 export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, handleClearFilters}) {
     const searchInputText = useId()
     const searchInputTecnology = useId()
@@ -30,7 +33,16 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
 
     const handleTextChange = (event) => {
         const inputValue = event.target.value
-        onTextFilter(inputValue)
+        console.log(inputValue)
+        //Debounce logic - cancelar evento anterior
+        if (timeoutRef) {
+            clearTimeout(timeoutRef)
+        }
+
+        timeoutRef = setTimeout(() => {
+            onTextFilter(inputValue)
+        }, 500)
+        //onTextFilter(inputValue)
     }
 
     const [experience, setExperience] = useState("");
