@@ -15,7 +15,8 @@ export function SearchPage() {
     handleSearch,
     handleTextFilter,
     hasActiveFilters,
-    handleClearFilters
+    handleClearFilters,
+    textFilter
   } = useFilters()
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function SearchPage() {
 
   return (
       <main>
-          <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} hasActiveFilters={hasActiveFilters} handleClearFilters={handleClearFilters} />
+          <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} hasActiveFilters={hasActiveFilters} handleClearFilters={handleClearFilters} textFilter={textFilter} />
           <section>
             {
                 loading ? <p>Cargando empleos...</p> : <JobList jobs={jobs} />

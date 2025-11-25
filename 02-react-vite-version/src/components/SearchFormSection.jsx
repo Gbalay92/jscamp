@@ -3,7 +3,7 @@ import { useState, useRef } from "react"
 
 
 
-export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, handleClearFilters}) {
+export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, handleClearFilters, textFilter}) {
     const searchInputText = useId()
     const searchInputTecnology = useId()
     const searchInputLocation = useId()
@@ -54,9 +54,19 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
         //onTextFilter(inputValue)
     }
 
-    const [experience, setExperience] = useState("");
-    const [technology, setTechnology] = useState("");
-    const [location, setLocation] = useState("");
+    const [experience, setExperience] = useState(() => {
+        const params = new URLSearchParams(window.location.search)
+        return params.get('experience') || ''
+    })
+    const [technology, setTechnology] = useState(() => {
+        const params = new URLSearchParams(window.location.search)
+        return params.get('technology') || ''
+    })
+    const [location, setLocation] = useState(() => {
+        const params = new URLSearchParams(window.location.search)
+        return params.get('location') || ''
+    })
+
     const clearFilers = (event) => {
         event.preventDefault()
         handleClearFilters()
@@ -81,7 +91,7 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                   <path d="M21 21l-6 -6" /></svg>
-                  <input name={searchInputText} type="text" placeholder="Buscar empleos por título, habilidad o empresa" aria-label="Buscar empleos" id="search-input"
+                  <input value={textFilter} name={searchInputText} type="text" placeholder="Buscar empleos por título, habilidad o empresa" aria-label="Buscar empleos" id="search-input"
                     onChange={handleTextChange}/>
                   <button type="submit">Buscar</button>
               </div>
