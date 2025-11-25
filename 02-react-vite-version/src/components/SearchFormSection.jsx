@@ -28,6 +28,15 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
         const filters = {
             [name]: value,
         }
+        if (name === 'technology') {
+            setTechnology(document.getElementById(searchInputTecnology).value)
+        }
+        if (name === 'location') {
+            setLocation(document.getElementById(searchInputLocation).value)
+        }
+        if (name === 'experience') {
+            setExperience(document.getElementById(searchInputExperience).value)
+        }
         onSearch(filters)
     }
 
@@ -48,7 +57,8 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
     const [experience, setExperience] = useState("");
     const [technology, setTechnology] = useState("");
     const [location, setLocation] = useState("");
-    const clearFilers = () => {
+    const clearFilers = (event) => {
+        event.preventDefault()
         handleClearFilters()
         setExperience("");
         setTechnology("");
