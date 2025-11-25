@@ -1,8 +1,7 @@
 import { useId } from "react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 
-let timeoutRef = null 
 
 export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, handleClearFilters}) {
     const searchInputText = useId()
@@ -10,6 +9,7 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
     const searchInputLocation = useId()
     const searchInputExperience = useId()
 
+    const timeoutRef = useRef(null)
     const handleSubmit = (event) => {
         event.preventDefault()
         const formData = new FormData(event.target)
@@ -35,11 +35,11 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
         const inputValue = event.target.value
         console.log(inputValue)
         //Debounce logic - cancelar evento anterior
-        if (timeoutRef) {
-            clearTimeout(timeoutRef)
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
         }
 
-        timeoutRef = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
             onTextFilter(inputValue)
         }, 500)
         //onTextFilter(inputValue)
