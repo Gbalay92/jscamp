@@ -1,0 +1,31 @@
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+
+  a {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover, &:focus {
+      background-color: var(--primary);
+      color: white;
+      outline: none;
+    }
+
+    
+  }
+}
+
+.isActive {
+    transform: scale(0.95);
+    background-color: var(--primary-light); 
+    pointer-events: none;
+}
