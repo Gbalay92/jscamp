@@ -4,7 +4,7 @@ import { HomePage } from './pages/Home.jsx'
 import { SearchPage } from './pages/Search.jsx'
 import { NotFoundPage } from './pages/404.jsx'
 import { Contact } from './pages/Contact.jsx'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router'
 
 
 function App() {
