@@ -10,8 +10,7 @@ function JobSection({ title, children }) {
 	return (
     <section className={styles.section}>
       <h2 className={styles.sectionTitle}>{title}</h2>
-			<div className={`${styles.sectionContent} prose`}>
-				{children}
+			<div className={`${styles.sectionContent} prose`} dangerouslySetInnerHTML={{ __html: htmlContent }}>
 			</div>
     </section>
   )
