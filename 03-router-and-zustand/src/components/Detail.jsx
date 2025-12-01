@@ -83,6 +83,12 @@ export function JobDetail() {
 			<button className={styles.applyButton}>
 				Aplicar
 			</button>
+
+			
+			<JobSection title="Descripción del puesto" content={job?.descripcion} />
+			<JobSection title="Responsabilidades" content={job?.responsibilities} />
+			<JobSection title="Requisitos" content={job?.requirements} />
+			<JobSection title="Acerca de la empresa" content={job?.about} />
 		</div>
     </>
   )
