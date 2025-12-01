@@ -2,6 +2,20 @@ import { useParams } from "react-router"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
 import styles from './Detail.module.css'
+import snarkdown from 'snarkdown'
+import styles from './Detail.module.css'
+
+function JobSection({ title, children }) {
+	const htmlContent = snarkdown(children)
+	return (
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>{title}</h2>
+			<div className={`${styles.sectionContent} prose`}>
+				{children}
+			</div>
+    </section>
+  )
+}
 
 export function JobDetail() {
   const { jobId } = useParams()
@@ -48,8 +62,28 @@ export function JobDetail() {
 
   return (
     <>
-      <h2>Job Detail Page</h2>
-      <p>Job ID: {jobId}</p>
+		<div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+			<div className={ styles.container }>
+				<nav className={ styles.breadcrumb}>
+					<Link
+						href="/search"
+						className={ styles.breadcrumbButton}>
+							Empleos
+					</Link>
+					<span className={ styles.breadcrumbSeparator}></span>
+					<span className={ styles.breadcrumbCurrent }>{ job?.titulo }</span>
+				</nav>
+			</div>
+
+			<header className={ styles.header }>
+				<h1 className={ styles.title }>{ job?.titulo }</h1>
+				<p className={ styles.meta }>{ job?.empresa } · { job?.ubicacion }</p>
+			</header>
+
+			<button className={styles.applyButton}>
+				Aplicar
+			</button>
+		</div>
     </>
   )
 }
