@@ -1,29 +1,28 @@
 import { useParams } from "react-router"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
-import styles from './Detail.module.css'
+import { Link } from "./Link"
 import snarkdown from 'snarkdown'
 import styles from './Detail.module.css'
 
-function JobSection({ title, children }) {
-	const htmlContent = snarkdown(children)
+function JobSection({ title, content }) {
+	const htmlContent = snarkdown(content)
 	return (
-    <section className={styles.section}>
-      <h2 className={styles.sectionTitle}>{title}</h2>
-			<div className={`${styles.sectionContent} prose`} dangerouslySetInnerHTML={{ __html: htmlContent }}>
-			</div>
-    </section>
+		<section className={styles.section}>
+		<h2 className={styles.sectionTitle}>{title}</h2>
+				<div className={`${styles.sectionContent} prose`} dangerouslySetInnerHTML={{ __html: htmlContent }}>
+				</div>
+		</section>
   )
 }
 
 export function JobDetail() {
-  const { jobId } = useParams()
+  	const { jobId } = useParams()
 	const navigate = useNavigate()
   
 	const [job, setJob] = useState(null)
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
-
   useEffect(() => {
     // Fetch job details using jobId
     fetch(`https://jscamp-api.vercel.app/api/jobs/${jobId}`)
@@ -32,7 +31,7 @@ export function JobDetail() {
           throw new Error('Network response was not ok')
         } else {
         	return response.json()
-				}
+		}	
       })
       .then(data => setJob(data))
 			.catch(err => setError(err))
@@ -58,7 +57,6 @@ export function JobDetail() {
 			</button>
 		</div>
 	}
-
   return (
     <>
 		<div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
@@ -84,10 +82,10 @@ export function JobDetail() {
 			</button>
 
 			
-			<JobSection title="Descripción del puesto" content={job?.descripcion} />
-			<JobSection title="Responsabilidades" content={job?.responsibilities} />
-			<JobSection title="Requisitos" content={job?.requirements} />
-			<JobSection title="Acerca de la empresa" content={job?.about} />
+			<JobSection title="Descripción del puesto" content={job?.content?.description} />
+			<JobSection title="Responsabilidades" content={job?.content?.responsibilities} />
+			<JobSection title="Requisitos" content={job?.content?.requirements} />
+			<JobSection title="Acerca de la empresa" content={job?.content?.about} />
 		</div>
     </>
   )

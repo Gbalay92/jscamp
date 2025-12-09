@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from './Link'
+import styles from './JobCard.module.css'
 
 export function JobCard({ job }) {
   const [isApplied, setIsApplied] = useState(false)
@@ -14,7 +16,9 @@ export function JobCard({ job }) {
             data-modalidad={job.data?.modalidad}
             className="job">
             <div>
-                <h3>{job.titulo}</h3>
+                <h3>
+                  <Link className={styles.link} href={`/job/${job.id}`}>{job.titulo}</Link>
+                </h3>
                 <h4>{job.empresa} | {job.ubicacion}</h4>
             </div>
             <p>{job.descripcion}</p>
