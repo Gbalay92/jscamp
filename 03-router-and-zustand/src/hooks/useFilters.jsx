@@ -1,27 +1,25 @@
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from './useRouter.jsx'
+import { useSearchParams } from 'react-router'
 
 
 
 const RESULTS_PER_PAGE = 5
 
 export const useFilters = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
+
     const [filters, setFilters] = useState(() => {
-    const params = new URLSearchParams(window.location.search)
     return {
-        technology: params.get('technology') || '',
-        location: params.get('location') || '',
-        experience: params.get('experience') || '' 
+        technology: searchParams.get('technology') || '',
+        location: searchParams.get('location') || '',
+        experience: searchParams.get('experience') || '' 
     }})
 
-  const [textFilter, setTextFilter] = useState(() => {
-    const params = new URLSearchParams(window.location.search)
-    return params.get('text') || ''
-  })
+  const [textFilter, setTextFilter] = useState(() => searchParams.get('text') || '')
 
   const [currentPage, setCurrentPage] = useState(() => {
-    const params = new URLSearchParams(window.location.search)
-    const page = parseInt(params.get('page') || '1', 10)
+    const page = parseInt(searchParams.get('page') || '1', 10)
     return isNaN(page) || page < 1 ? 1 : page
   })
 
@@ -114,16 +112,17 @@ currentPage * RESULTS_PER_PAGE //pagina 1: 5, pagina 2: 10
 
   const { navigateTo } = useRouter()
   useEffect(() => {
-    const params = new URLSearchParams()
-    if (textFilter) params.append('text', textFilter)
-    if (filters.technology) params.append('technology', filters.technology)
-    if (filters.location) params.append('location', filters.location)
-    if (filters.experience) params.append('experience', filters.experience)
-    if (currentPage>1) params.append('page', currentPage)
+    setSearchParams((params) => {
+      if (textFilter) params.set('text', textFilter)
+      if (filters.technology) params.set('technology', filters.technology)
+      if (filters.location) params.set('location', filters.location)
+      if (filters.experience) params.set('experience', filters.experience)
+      if (currentPage>1) params.set('page', currentPage)
 
-    const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : `${window.location.pathname}`
-    navigateTo(newURL)
-  }, [filters, textFilter, currentPage, navigateTo])
+      return params
+    })
+    
+  }, [filters, textFilter, currentPage, setSearchParams, navigateTo])
 
 
   return {
