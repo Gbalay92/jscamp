@@ -371,3 +371,10 @@ article {
     background-color: #13b858;
 }
 }
+
+
+.nav-link-active {
+  pointer-events: none;
+  opacity: .5;
+  user-select: none;
+}

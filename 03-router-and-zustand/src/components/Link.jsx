@@ -1,8 +1,8 @@
-import { Link as NavLink } from "react-router"
+import { NavLink } from "react-router"
 
 export function Link({ href, children, ...props }) {
     
     return (
-        <NavLink to={href} {...props}>{children}</NavLink>
+        <NavLink className={({isActive}) => isActive ? 'nav-link-active' : ''} to={href} {...props}>{children}</NavLink>
     )
 }

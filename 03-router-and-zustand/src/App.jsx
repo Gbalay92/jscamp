@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy } from 'react'
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Contact } from './pages/Contact.jsx'
