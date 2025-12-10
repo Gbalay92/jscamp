@@ -5,7 +5,7 @@ import { SearchFormSection } from '../components/SearchFormSection.jsx'
 import { useFilters } from '../hooks/useFilters.jsx'
 
 
-export function SearchPage() {
+export default function SearchPage() {
   const {
     jobs,
     currentPage,

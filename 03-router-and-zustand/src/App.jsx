@@ -1,12 +1,13 @@
+import { lazy, Suspense } from 'react'
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
-import { HomePage } from './pages/Home.jsx'
-import { SearchPage } from './pages/Search.jsx'
-import { NotFoundPage } from './pages/404.jsx'
 import { Contact } from './pages/Contact.jsx'
 import { Routes, Route } from 'react-router'
-import { JobDetail } from './components/Detail.jsx'
 
+const HomePage = lazy(() => import('./pages/Home.jsx'))
+const SearchPage = lazy(() => import('./pages/Search.jsx'))
+const NotFoundPage = lazy(() => import('./pages/404.jsx'))
+const JobDetail = lazy(() => import('./components/Detail.jsx'))
 
 function App() {
 

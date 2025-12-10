@@ -1,4 +1,4 @@
-export function HomePage() {
+export default function HomePage() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
