@@ -2,7 +2,6 @@ import { useId } from "react"
 import { useState, useRef } from "react"
 
 
-
 export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, handleClearFilters, textFilter}) {
     const searchInputText = useId()
     const searchInputTecnology = useId()
@@ -42,7 +41,6 @@ export function SearchFormSection({onSearch, onTextFilter, hasActiveFilters, han
 
     const handleTextChange = (event) => {
         const inputValue = event.target.value
-        console.log(inputValue)
         //Debounce logic - cancelar evento anterior
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current)
