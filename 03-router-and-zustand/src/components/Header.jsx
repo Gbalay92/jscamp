@@ -1,6 +1,9 @@
 import { Link } from "./Link";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
 
-export function Header({ isLoggedIn, onLogin, onLogout }) {
+export function Header() {
+    const { isLoggedIn, handleLogin, handleLogout } = useContext(AuthContext);
     console.log(isLoggedIn);
     return (
         <>
@@ -17,8 +20,8 @@ export function Header({ isLoggedIn, onLogin, onLogout }) {
                 </nav>
                 {
                     isLoggedIn
-                        ? <button onClick={onLogout}>Cerrar sesión</button>
-                        : <button onClick={onLogin}>Iniciar sesión</button>
+                        ? <button onClick={handleLogout}>Cerrar sesión</button>
+                        : <button onClick={handleLogin}>Iniciar sesión</button>
                 }
             </header>
             

@@ -1,4 +1,4 @@
-import { lazy, useState } from 'react'
+import { lazy } from 'react'
 import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Contact } from './pages/Contact.jsx'
@@ -10,18 +10,11 @@ const NotFoundPage = lazy(() => import('./pages/404.jsx'))
 const JobDetail = lazy(() => import('./components/Detail.jsx'))
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const handleLogin = () => {
-    setIsLoggedIn(true)
-  }
-  const handleLogout = () => {
-    setIsLoggedIn(false)
-  }
-
+  
 
   return (
       <>
-        <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
+        <Header  />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
