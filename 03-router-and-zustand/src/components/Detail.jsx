@@ -4,8 +4,7 @@ import { useNavigate } from "react-router"
 import { Link } from "./Link"
 import snarkdown from 'snarkdown'
 import styles from './Detail.module.css'
-import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext.jsx"
+import { useAuth } from "../context/AuthContext"
 
 
 function JobSection({ title, content }) {
@@ -20,7 +19,7 @@ function JobSection({ title, content }) {
 }
 
 export default function JobDetail() {
-	const { isLoggedIn } = useContext(AuthContext)
+	const { isLoggedIn } = useAuth()
   	const { jobId } = useParams()
 	const navigate = useNavigate()
   

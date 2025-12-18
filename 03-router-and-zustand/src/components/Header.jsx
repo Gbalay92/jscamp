@@ -1,10 +1,8 @@
 import { Link } from "./Link";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.jsx";
+import { useAuth } from "../context/AuthContext";
 
 export function Header() {
-    const { isLoggedIn, handleLogin, handleLogout } = useContext(AuthContext);
-    console.log(isLoggedIn);
+    const { isLoggedIn, handleLogin, handleLogout } = useAuth();
     return (
         <>
             <header>
