@@ -1,8 +1,12 @@
 import { Link } from "./Link";
 import { useAuth } from "../context/AuthContext";
+import { useFavoritesStore } from "../store/favoritesStore";
 
 export function Header() {
+    const {  countFavorites } = useFavoritesStore();
     const { isLoggedIn, handleLogin, handleLogout } = useAuth();
+
+    const numberOfFavorites = countFavorites();
     return (
         <>
             <header>
@@ -15,6 +19,9 @@ export function Header() {
                     <Link href="./">Inicio</Link>
                     <Link href="./search">Empleos</Link>
                     <Link href="./contact">Contacto</Link>
+                    {
+                    isLoggedIn && <Link href="./profile">Profile (❤️{numberOfFavorites})</Link>
+                    }
                 </nav>
                 {
                     isLoggedIn

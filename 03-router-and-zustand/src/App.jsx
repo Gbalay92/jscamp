@@ -3,6 +3,7 @@ import { Header } from './components/Header.jsx'
 import { Footer } from './components/Footer.jsx'
 import { Contact } from './pages/Contact.jsx'
 import { Routes, Route } from 'react-router'
+import { useAuth } from "./context/AuthContext";
 
 const HomePage = lazy(() => import('./pages/Home.jsx'))
 const SearchPage = lazy(() => import('./pages/Search.jsx'))
@@ -10,8 +11,7 @@ const NotFoundPage = lazy(() => import('./pages/404.jsx'))
 const JobDetail = lazy(() => import('./components/Detail.jsx'))
 
 function App() {
-  
-
+  const { isLoggedIn } = useAuth();
   return (
       <>
         <Header  />
