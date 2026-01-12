@@ -4,9 +4,15 @@ import styles from './JobCard.module.css'
 import { useFavoritesStore } from '../store/favoritesStore.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 
+function JobCardFavoriteButton({ job }) {
+  const { toggleFavorite, isFavorite } = useFavoritesStore();
+  return (
+        <button onClick={() => toggleFavorite(job.id)}> {isFavorite(job.id) ? '❤️' : '🤍'}</button> 
+      )
+}
+
 export function JobCard({ job }) {
   const [isApplied, setIsApplied] = useState(false)
-  const { toggleFavorite, isFavorite } = useFavoritesStore();
   const { isLoggedIn } = useAuth();
   const handleApplyClick = () => {
     setIsApplied(true)
@@ -31,8 +37,7 @@ export function JobCard({ job }) {
             className={buttonClasses}
             onClick={handleApplyClick}>{buttonText}</button>            
             {
-             isLoggedIn ? 
-             <button onClick={() => toggleFavorite(job.id)}> {isFavorite(job.id) ? '❤️' : '🤍'}</button> : null
+              isLoggedIn && <JobCardFavoriteButton job={job} />
             }
         </article>
     )
