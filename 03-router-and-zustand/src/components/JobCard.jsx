@@ -11,15 +11,23 @@ function JobCardFavoriteButton({ job }) {
       )
 }
 
-export function JobCard({ job }) {
+function JobCardApplyButton({ jobId, isLoggedIn }) {
   const [isApplied, setIsApplied] = useState(false)
-  const { isLoggedIn } = useAuth();
+  const buttonClasses = (isApplied && isLoggedIn) ? 'apply-button-job is-applied' : 'apply-button-job'
+  const buttonText = (isApplied && isLoggedIn) ? 'Aplicado' : 'Aplicar'
   const handleApplyClick = () => {
     setIsApplied(true)
   }
+  return (
+        <button 
+        disabled={isApplied === true || !isLoggedIn}
+        className={buttonClasses}
+        onClick={handleApplyClick}>{buttonText}</button> 
+  )
+}
 
-  const buttonClasses = isApplied ? 'apply-button-job is-applied' : 'apply-button-job'
-  const buttonText = isApplied ? 'Aplicado' : 'Aplicar'
+export function JobCard({ job }) {
+  const { isLoggedIn } = useAuth();
 
     return (
         <article 
@@ -31,11 +39,8 @@ export function JobCard({ job }) {
                 </h3>
                 <h4>{job.empresa} | {job.ubicacion}</h4>
             </div>
-            <p>{job.descripcion}</p>
-            <button 
-            disabled={isApplied === true}
-            className={buttonClasses}
-            onClick={handleApplyClick}>{buttonText}</button>            
+            <p>{job.descripcion}</p>  
+            <JobCardApplyButton jobId={job.id} isLoggedIn={isLoggedIn} />   
             {
               isLoggedIn && <JobCardFavoriteButton job={job} />
             }
