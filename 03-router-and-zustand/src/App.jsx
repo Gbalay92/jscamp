@@ -11,6 +11,7 @@ const SearchPage = lazy(() => import('./pages/Search.jsx'))
 const NotFoundPage = lazy(() => import('./pages/404.jsx'))
 const JobDetail = lazy(() => import('./components/Detail.jsx'))
 const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'))
+const LoginPage = lazy(() => import('./pages/Login.jsx'))
 
 function App() {
   const { isLoggedIn } = useAuth();
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/job/:jobId" element={<JobDetail isLoggedIn={isLoggedIn} />} />
           <Route path="/profile" element={
