@@ -2,8 +2,8 @@ import styles from './Login.module.css'
 
 export default function LoginPage() {
     return (
-        <div className={styles.loginCard}>
-            <form>
+        <div className={styles.loginContainer}>
+            <form className={styles.loginCard}>
                 <div className={styles.formGroup}>
                     <label htmlFor="username">User</label>
                     <input type="text" id="username" />
