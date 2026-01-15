@@ -5,8 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient( #2b2b2b, #06182a),
-    url('https://images.unsplash.com/photo-1526401281623-342c2a4a0c11?auto=format&fit=crop&w=1600&q=80');
+    background: linear-gradient( #2b2b2b, #06182a);
     background-size: cover;
 }
 
