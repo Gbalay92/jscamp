@@ -5,12 +5,12 @@ export default function LoginPage() {
         <div className={styles.loginContainer}>
             <form className={styles.loginCard}>
                 <div className={styles.formGroup}>
-                    <label htmlFor="username">User</label>
-                    <input type="text" id="username" />
+                    <label htmlFor="username">Username</label>
+                    <input className={styles.inputField} type="text" id="username" />
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" />
+                    <input className={styles.inputField} type="password" id="password" />
                 </div>
                 <button type="submit" className={styles.loginButton}>Login</button>
             </form>
