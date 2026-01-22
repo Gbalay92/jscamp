@@ -5,12 +5,19 @@ const port = process.env.PORT ?? 3000
 
 const server = createServer((req, res) => {
     console.log(`${req.method} ${req.url}`)
+
+    const { method, url } = req
+    if (method !== 'GET') {
+        res.statusCode = 405
+        return res.end('Method Not Allowed\n')
+    }
+
     res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-    if (req.url === '/') {
+    if (url === '/') {
         return res.end('Hello from Node!\n')
-    } else if (req.url === '/health') {
+    } else if (url === '/health') {
         return res.end('OK\n')
-    } else if (req.url === '/json') {
+    } else if (url === '/json') {
         res.setHeader('Content-Type', 'application/json; charset=utf-8')
         return res.end(JSON.stringify({ message: 'Hello, JSON!' }))
     } else {
