@@ -19,23 +19,29 @@ const sendJson = (res, statusCode, data) => {
 
 const server = createServer(async (req, res) => {
     console.log(`${req.method} ${req.url}`)
-
     const { method, url } = req
+
+    const {pathname, queryString } = url.split('?')
+    const searchParams = new URLSearchParams(queryString)
+
     if (method === 'GET') {
         res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-        if (url === '/') {
+        if (pathname === '/') {
             return res.end('Hello from Node!\n')
-        } else if (url === '/health') {
+        } else if (pathname === '/health') {
             return res.end('OK\n')
-        } else if (url === '/json') {
+        } else if (pathname === '/json') {
             return sendJson(res, 200, { message: 'Hello, JSON!' })
-        } else if (url === '/users') {
-            return sendJson(res, 200, users)
+        } else if (pathname === '/users') {
+            const limit = parseInt(searchParams.get('limit')) || users.length
+            const offset = parseInt(searchParams.get('offset')) || 0
+            const paginatedUsers = users.slice(offset, offset + limit)
+            return sendJson(res, 200, paginatedUsers)
         } else {
             res.statusCode = 404
             return res.end('Not Found\n')
         }
-    } else if (method === 'POST' && url === '/users') {
+    } else if (method === 'POST' && pathname === '/users') {
         const body = await json(req)
         if (!body || !body.name) {
             return sendJson(res, 400, { error: 'Name is required' })
