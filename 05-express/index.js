@@ -4,6 +4,21 @@ const PORT = process.env.PORT || 3000
 
 const app = express()
 
+app.get('/get-jobs', (req, res) => {
+  const jobs = [
+    { id: 1, title: 'Software Engineer', company: 'Tech Corp' },
+    { id: 2, title: 'Data Scientist', company: 'Data Inc' },
+    { id: 3, title: 'Product Manager', company: 'Business Solutions' },
+  ]
+  res.json(jobs)
+})
+
+app.get('/get-job/:id', (req, res) => {
+  const jobId = parseInt(req.params.id, 10)
+  const job = { id: jobId, title: 'Sample Job', company: 'Sample Company' }
+  res.json(job)
+})
+
 app.get('/', prevHomeMiddleware, (req, res) => {
   res.send('Hello, Express!')
 })
