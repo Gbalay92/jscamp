@@ -1,15 +1,12 @@
 import express from 'express'
+import { jobs } from './jobs.json' with { type: 'json' }
 
 const PORT = process.env.PORT || 3000
 
 const app = express()
 
+
 app.get('/get-jobs', (req, res) => {
-  const jobs = [
-    { id: 1, title: 'Software Engineer', company: 'Tech Corp' },
-    { id: 2, title: 'Data Scientist', company: 'Data Inc' },
-    { id: 3, title: 'Product Manager', company: 'Business Solutions' },
-  ]
   res.json(jobs)
 })
 
