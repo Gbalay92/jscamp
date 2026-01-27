@@ -8,7 +8,7 @@ const app = express()
 
 app.get('/get-jobs', (req, res) => {
   console.log('req.query:', req.query) // Log query parameters, in the url after '?', example: /get-jobs?location=NYC&fulltime=true
-  const { text, title, level, limit, technology, offset } = req.query
+  const { text, title, level, limit = 10, technology, offset = 0} = req.query
   let filteredJobs = jobs
   if (text) {
     const lowerText = text.toLowerCase()
@@ -31,7 +31,11 @@ app.get('/get-jobs', (req, res) => {
     )
   }
   //etc...
-  res.json(filteredJobs)
+
+  limitNumber = Number(limit) || filteredJobs.length
+  offsetNumber = Number(offset) || 0
+  paginatedJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber)
+  res.json(paginatedJobs)
 })
 
 app.get('/get-job/:id', (req, res) => {
