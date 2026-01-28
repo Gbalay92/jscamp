@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000
 const app = express()
 
 
-app.get('/get-jobs', (req, res) => {
+app.get('/jobs', (req, res) => {
   console.log('req.query:', req.query) // Log query parameters, in the url after '?', example: /get-jobs?location=NYC&fulltime=true
   const { text, title, level, limit = 10, technology, offset = 0} = req.query
   let filteredJobs = jobs
@@ -38,10 +38,18 @@ app.get('/get-jobs', (req, res) => {
   res.json(paginatedJobs)
 })
 
-app.get('/get-job/:id', (req, res) => {
+app.get('/jobs/:id', (req, res) => {
   const jobId = parseInt(req.params.id, 10)
   const job = { id: jobId, title: 'Sample Job', company: 'Sample Company' }
   res.json(job)
+})
+
+app.delete('/jobs/:id', (req, res) => {
+  //TODO
+})
+
+app.post('/jobs', (req, res) => {
+  //TODO
 })
 
 app.get('/', prevHomeMiddleware, (req, res) => {
