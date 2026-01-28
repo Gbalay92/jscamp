@@ -52,6 +52,14 @@ app.post('/jobs', (req, res) => {
   //TODO
 })
 
+app.put('/jobs/:id', (req, res) => {
+  //TODO: to update entire resource
+})
+
+app.patch('/jobs/:id', (req, res) => {
+  //TODO: to update partial resource
+})
+
 app.get('/', prevHomeMiddleware, (req, res) => {
   res.send('Hello, Express!')
 })
