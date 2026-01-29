@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000
 
 const app = express()
 
-
+//CRUD operations for /jobs endpoint
 app.get('/jobs', (req, res) => {
   console.log('req.query:', req.query) // Log query parameters, in the url after '?', example: /get-jobs?location=NYC&fulltime=true
   const { text, title, level, limit = 10, technology, offset = 0} = req.query
@@ -40,7 +40,10 @@ app.get('/jobs', (req, res) => {
 
 app.get('/jobs/:id', (req, res) => {
   const jobId = parseInt(req.params.id, 10)
-  const job = { id: jobId, title: 'Sample Job', company: 'Sample Company' }
+  const job = jobs.find(job => job.id === jobId)
+  if (!job) {
+    return res.status(404).json({ error: 'Job not found' })
+  }
   res.json(job)
 })
 
@@ -49,7 +52,18 @@ app.delete('/jobs/:id', (req, res) => {
 })
 
 app.post('/jobs', (req, res) => {
-  //TODO
+  const { title, company, description, technologies, data } = req.body
+  const newJob = {
+    id: crypto.randomUUID(),
+    title,
+    company,
+    description,
+    technologies,
+    data
+  }
+
+  jobs.push(newJob)
+  return res.status(201).json(newJob)
 })
 
 app.put('/jobs/:id', (req, res) => {
@@ -59,6 +73,9 @@ app.put('/jobs/:id', (req, res) => {
 app.patch('/jobs/:id', (req, res) => {
   //TODO: to update partial resource
 })
+
+
+/*--------------------------------------*/
 
 app.get('/', prevHomeMiddleware, (req, res) => {
   res.send('Hello, Express!')
