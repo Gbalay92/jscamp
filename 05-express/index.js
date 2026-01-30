@@ -51,6 +51,7 @@ app.delete('/jobs/:id', (req, res) => {
   //TODO
 })
 
+app.use(express.json()) // Middleware to parse JSON bodies
 app.post('/jobs', (req, res) => {
   const { title, company, description, technologies, data } = req.body
   const newJob = {
@@ -67,11 +68,39 @@ app.post('/jobs', (req, res) => {
 })
 
 app.put('/jobs/:id', (req, res) => {
-  //TODO: to update entire resource
+  const jobId = req.params.id
+  const jobIndex = jobs.findIndex(job => job.id === jobId)
+  if (jobIndex === -1) {
+    return res.status(404).json({ error: 'Job not found' })
+  }
+  const { title, company, description, technologies, data } = req.body
+  jobs[jobIndex] = {
+    ...jobs[jobIndex],
+    title,
+    company,
+    description,
+    technologies,
+    data
+  }
+  res.json(jobs[jobIndex])
 })
 
 app.patch('/jobs/:id', (req, res) => {
-  //TODO: to update partial resource
+  const jobId = req.params.id
+  const jobIndex = jobs.findIndex(job => job.id === jobId)
+  if (jobIndex === -1) {
+    return res.status(404).json({ error: 'Job not found' })
+  }
+  const { title, company, description, technologies, data } = req.body
+  jobs[jobIndex] = {
+    ...jobs[jobIndex],
+    ...(title && { title }),
+    ...(company && { company }),
+    ...(description && { description }),
+    ...(technologies && { technologies }),
+    ...(data && { data })
+  }
+  res.json(jobs[jobIndex])
 })
 
 
