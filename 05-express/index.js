@@ -1,9 +1,23 @@
 import express from 'express'
 import { jobs } from './jobs.json' with { type: 'json' }
+import cors from 'cors'
+import crypto from 'crypto'
+
+/*--------------------------------------*/
 
 const PORT = process.env.PORT || 3000
-
 const app = express()
+//app.use(cors) // Enable CORS for all origins
+const allowedOrigins = ['http://localhost:3000', 'http://example.com']
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true) //NULL means no error
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}))
 
 //CRUD operations for /jobs endpoint
 app.get('/jobs', (req, res) => {
@@ -35,7 +49,7 @@ app.get('/jobs', (req, res) => {
   limitNumber = Number(limit) || filteredJobs.length
   offsetNumber = Number(offset) || 0
   paginatedJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber)
-  res.json(paginatedJobs)
+  res.json({ data: paginatedJobs, total: filteredJobs.length, limit: limitNumber, offset: offsetNumber })
 })
 
 app.get('/jobs/:id', (req, res) => {
