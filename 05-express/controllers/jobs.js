@@ -1,4 +1,4 @@
-import { Job } from "../models/job"
+import { Job } from "../models/job.js"
 
 export class JobsController {
     static async getAll(req, res) {

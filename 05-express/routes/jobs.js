@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { jobs } from '../jobs.json' with { type: 'json' }
-import { JobsController } from '../controllers/jobs'
+import { JobsController } from '../controllers/jobs.js'
+import express from 'express'
 
 export const jobsRouter = Router()
 jobsRouter.use(express.json()) // Middleware to parse JSON bodies

@@ -24,9 +24,8 @@ export class Job {
             )
           }
           //etc...
-        
-          limitNumber = Number(limit) || filteredJobs.length
-          offsetNumber = Number(offset) || 0
+          const limitNumber = Number(limit) || filteredJobs.length
+          const offsetNumber = Number(offset) || 0
           const paginatedJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber)
           return { data: paginatedJobs, total: filteredJobs.length, limit: limitNumber, offset: offsetNumber }
     }

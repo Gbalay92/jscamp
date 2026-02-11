@@ -16,4 +16,3 @@ export const corsMiddleware = ({ acceptedOrigins = allowedOrigins } = {}) => {
 }
 
 
-app.use()
