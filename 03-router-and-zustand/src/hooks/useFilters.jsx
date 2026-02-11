@@ -52,7 +52,7 @@ export const useFilters = () => {
             const offset = (currentPage - 1) * RESULTS_PER_PAGE
             params.append('limit', RESULTS_PER_PAGE)
             params.append('offset', offset)
-            const response = await fetch(`https://jscamp-api.vercel.app/api/jobs?${params.toString()}`)
+            const response = await fetch(`http://localhost:3000/jobs?${params.toString()}`)
             const json = await response.json()
             setJobs(json.data)
             setTotal(json.total)

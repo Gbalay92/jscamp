@@ -1,7 +1,7 @@
 import cors from 'cors'
 
 //app.use(cors) // Enable CORS for all origins
-const allowedOrigins = ['http://localhost:3000', 'http://example.com']
+const allowedOrigins = ['http://localhost:3000', 'http://example.com','http://localhost:5173', 'http://localhost:5174']
 
 export const corsMiddleware = ({ acceptedOrigins = allowedOrigins } = {}) => {
     return cors({
