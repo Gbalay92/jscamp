@@ -9,6 +9,11 @@ app.use(corsMiddleware())
 app.use(express.json()) // Middleware to parse JSON bodies
 
 app.use('/jobs', jobsRouter)
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
-})
+
+if (!process.env.NODE_ENV) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
+  })
+}
+
+export default app
