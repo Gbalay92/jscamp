@@ -20,7 +20,7 @@ export class Job {
           if (technology) {
             const lowerTech = technology.toLowerCase()
             filteredJobs = filteredJobs.filter(job => 
-              job.technologies.some(tech => tech.toLowerCase() === lowerTech)
+              job.data.technology.some(tech => tech.toLowerCase() === lowerTech)
             )
           }
           //etc...
