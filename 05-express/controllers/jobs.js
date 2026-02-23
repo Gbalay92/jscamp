@@ -32,8 +32,8 @@ export class JobsController {
         data
       }
     
-      jobs.push(newJob)
-      return res.status(201).json(newJob)
+      const createdJob = await Job.create(newJob)
+      return res.status(201).json(createdJob)
     }
 
     static async updateById(req, res) {

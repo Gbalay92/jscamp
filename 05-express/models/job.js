@@ -29,4 +29,13 @@ export class Job {
           const paginatedJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber)
           return { data: paginatedJobs, total: filteredJobs.length, limit: limitNumber, offset: offsetNumber }
     }
+
+    static async create(jobData) {
+      const newJob = {
+        id: crypto.randomUUID(),
+        ...jobData
+      }
+      jobs.push(newJob)
+      return newJob
+    }
 }
