@@ -17,6 +17,9 @@ test('search jobs and apply', async ({ page }) => {
   await firstJob.click();
 
   const applyButton = page.getByRole('button', { name: 'Apply' });
-  await expect(applyButton).toBeVisible();
+  applyButton.click();
+
+  const applied = page.getByRole('button', { name: 'Applied' });
+  await expect(applied).toBeVisible();
 
 });
