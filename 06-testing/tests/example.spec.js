@@ -1,19 +1,22 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('search jobs and apply', async ({ page }) => {
+  await page.goto('http://localhost:5173/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  const searchInput = page.getByRole('searchbox', { name: 'Search companies, or keywords' });
+  await searchInput.fill('javascript');
+  await searchInput.press('Enter');
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  const jobCards = page.locator('jobs-listing-card');
+  // ensure there is at least one job card
+  const count = await jobCards.count();
+  await expect(count).toBeGreaterThan(0);
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  const firstJob = jobCards.first();
+  await firstJob.click();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  const applyButton = page.getByRole('button', { name: 'Apply' });
+  await expect(applyButton).toBeVisible();
+
 });
